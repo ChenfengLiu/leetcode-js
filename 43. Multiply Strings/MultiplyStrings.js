@@ -28,31 +28,28 @@ var multiply = function(num1, num2) {
     m = num2.length;
   let result = new Array(m + n).fill(0);
 
-  for (let i = m - 1; i >= 0; i--) {
-    for (let j = n - 1; j >= 0; j--) {
+  for (let i = n - 1; i >= 0; i--) {
+    for (let j = m - 1; j >= 0; j--) {
       let mul = num1[i] * num2[j];
       let p1 = i + j,
         p2 = i + j + 1;
+        console.log(p2);
       let sum = mul + result[p2];
       result[p1] += sum / 10 >>> 0;
       result[p2] = sum % 10;
     }
   }
 
-  if (result[0] == 0) {
-    return result.join('').substring(1);
-  } else {
-    return result.join('');
-  }
+  return result.join('').replace(/^0+(?!$)/, '');
 };
 
 // let num1 = '123',
 //   num2 = '456';
-// let num1 = "123456789",
-//   num2 = "987654321";
+let num1 = "123456789",
+  num2 = "987654321";
 
-let num1 = "00",
-  num2 = "10";
+// let num1 = "10000000",
+//   num2 = "0";
 
 let result1 = multiply(num1, num2);
 console.log("result 1 is: ", result1);
